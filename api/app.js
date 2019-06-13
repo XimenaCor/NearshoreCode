@@ -3,6 +3,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var cors = require('cors')
 
 //routes
 var userRoutes = require('./routes/user');
@@ -10,6 +11,7 @@ var userRoutes = require('./routes/user');
 //headers
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use(bodyParser.json({ limit: '100mb' }));
+app.use(cors());
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin,X-API-KEY,Origin,X-Requested-With,Content-Type,Aceppt,Access-Control-Request-Method,user,management');

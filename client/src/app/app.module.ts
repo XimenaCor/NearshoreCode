@@ -7,13 +7,11 @@ import { routing, appRoutingProviders } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { RegistrationComponent } from './components/registration/registration.component';
-import { LoansComponent } from './components/loans/loans.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistrationComponent,
-    LoansComponent
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,

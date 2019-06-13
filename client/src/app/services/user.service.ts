@@ -13,10 +13,16 @@ export class UserService {
     this.url = global.url;
   }
 
-  save(user){
+  save(email, user){
     let json = JSON.stringify(user);
     let headers = new Headers({'Content-Type':'application/json'});
-    return this._http.post(this.url+'save',json, {headers:headers}).map(res=>res.json());
+    return this._http.post(this.url+'save/'+email,json, {headers:headers}).map(res=>res.json());
+  }
+
+  verifyLoan(user, email){
+    let json = JSON.stringify(user);
+    let headers = new Headers({'Content-Type':'application/json'});
+    return this._http.put(this.url+'verifyLoan/'+email,json,{headers:headers}).map(res=>res.json());
   }
 
   verifyEmail(email){

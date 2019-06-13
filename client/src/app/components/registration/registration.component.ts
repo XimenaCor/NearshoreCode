@@ -14,6 +14,7 @@ import { UserService } from "../../services/user.service";
 export class RegistrationComponent implements OnInit {
   public user: User;
   public url: string;
+  public flag;
 
   constructor(
     private _route:ActivatedRoute,
@@ -25,10 +26,11 @@ export class RegistrationComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.flag=true;
   }
 
-  save(){
-    this._userService.save(this.user).subscribe(
+  save(email){
+    this._userService.save(email, this.user).subscribe(
       response => {
           //this.user = response.data;
           console.log(this.user);
@@ -38,16 +40,29 @@ export class RegistrationComponent implements OnInit {
         console.log(error);
       }
     );
+    this.flag=false;
   }
 
-  verifyEmail(email){
+  verifyLoan(){
+    this._userService.verifyLoan(this.user.email, this.user).subscribe(
+      response=>{
+        console.log("amount updated")
+      },
+      error=>{
+       console.log(error);
+      }
+    )
+  }
+
+
+
+ /* verifyEmail(email){
     this._userService.verifyEmail(email).subscribe(
       response=>{
         if(Object.keys(response.user).length != 0){
           console.log('user exists');
-          //this.user.email = null;
         }else{
-          this.save();
+          this.save(email);
         }
           
       },
@@ -56,5 +71,5 @@ export class RegistrationComponent implements OnInit {
       }
     );
 
-  }
+  }*/
 }

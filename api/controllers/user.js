@@ -5,15 +5,25 @@ function save(req, res) {
     var user = new userSchema();
     var params = req.body;
 
-    user.amount = 0;
-    user.email = params.email;
+    var emailUser = req.params.email;
+    userSchema.findOne({ 'email': emailUser }).exec().then(data => {
+        if (data) {
+            console.log("user exists");
+            res.status(500).send(err);
+        } else {
+            user.amount = 0;
+            user.email = params.email;
 
-    user.save().then(data => {
-        res.status(200).send({ user: data });
+            user.save().then(data => {
+                res.status(200).send({ user: data });
+            }).catch(err => {
+                console.log(err);
+                res.status(500).send(err);
+            });
+        }
     }).catch(err => {
-        console.log(err);
         res.status(500).send(err);
-    });
+    })
 }
 
 function verifyEmail(req, res) {
@@ -25,6 +35,16 @@ function verifyEmail(req, res) {
     }).catch(err => {
         res.status(500).send(err);
     })
+}
+
+function verifyLoan(req, res) {
+    var email = req.params.email;
+    var user = req.body;
+    userSchema.findByIdAndUpdate(email, user).exec().then(data => {
+        res.status(200).send({ user: data });
+    }).catch(err => {
+        res.status(500).send(err);
+    });
 }
 
 function updateAmountFirstTime(req, res) {
@@ -49,5 +69,6 @@ function updateAmountFirstTime(req, res) {
 module.exports = {
     save,
     verifyEmail,
-    updateAmountFirstTime
+    updateAmountFirstTime,
+    verifyLoan
 }

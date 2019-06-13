@@ -1,19 +1,38 @@
-<div class="card">
-    <div class="card-header">
-        <h3>User Registration</h3>
+<div *ngIf="flag">
+    <div class="card">
+        <div class="card-header">
+            <h3>User Registration</h3>
+        </div>
+        <div class="card-body">
+            <form action="#" #form1="ngForm">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="email" #email="ngModel" [(ngModel)]="user.email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <button class="btn btn-primary" (click)="save(user.email)">Submit</button>
+            </form>
+        </div>
     </div>
-    <div class="card-body">
-        <form action="#" #form1="ngForm">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="email" #email="ngModel" [(ngModel)]="user.email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <!--<div class="form-group">
-                <label for="exampleInputPassword1">Requested Amount</label>
-                <input type="number" class="form-control" placeholder="amount" name="amount" #amount="ngModel" [(ngModel)]="user.amount">
-            </div>-->
-            <button class="btn btn-primary" (click)="save()">Submit</button>
-        </form>
+</div>
+<div *ngIf="!flag">
+    <div class="card">
+        <div class="card-header">
+            <h3>Loan Asking</h3>
+        </div>
+        <div class="card-body">
+            <form action="#" #form1="ngForm">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="email" #email="ngModel" [(ngModel)]="user.email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Requested Amount</label>
+                    <input type="number" class="form-control" placeholder="amount" name="amount" #amount="ngModel" [(ngModel)]="user.amount">
+                </div>
+                <button class="btn btn-primary" (click)="verifyLoan()">Submit</button>
+            </form>
+        </div>
     </div>
 </div>
