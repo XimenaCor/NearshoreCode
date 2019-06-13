@@ -1,0 +1,71 @@
+<header class="ae-container-fluid ae-container-fluid--full rk-header ">
+    <input type="checkbox" id="mobile-menu" class="rk-mobile-menu">
+    <label for="mobile-menu">
+    <svg>
+      <use xlink:href="assets/img/symbols.svg#bar"></use>
+    </svg>
+    <svg>
+      <use xlink:href="assets/img/symbols.svg#bar"></use>
+    </svg>
+    <svg>
+      <use xlink:href="assets/img/symbols.svg#bar"></use>
+    </svg>
+  </label>
+    <div class="ae-container-fluid rk-topbar">
+        <h1 class="rk-logo"><a href="index.html">Nearshore Code</a></h1>
+        <nav class="rk-navigation">
+            <ul class="rk-menu">
+                <li class="rk-menu__item"><a [routerLink]="[ '/loans'] " class="rk-menu__link">Request a Loan</a>
+                </li>
+
+            </ul>
+            <form class="rk-search">
+                <input type="text" placeholder="Search" id="urku-search" class="rk-search-field">
+                <label for="urku-search">
+          <svg>
+            <use xlink:href="assets/img/symbols.svg#icon-search"></use>
+          </svg>
+        </label>
+            </form>
+        </nav>
+    </div>
+</header>
+<section class="ae-container-fluid ae-container-fluid--inner rk-portfolio rk-main">
+    <app-registration></app-registration>
+</section>
+<footer class="ae-container-fluid rk-footer ">
+    <router-outlet></router-outlet>
+    <div class="ae-grid ae-grid--collapse">
+        <div class="ae-grid__item item-lg-4 au-xs-ta-center au-lg-ta-left">
+            <ul class="rk-menu rk-footer-menu">
+                <li class="rk-menu__item"><a href="about.html" class="rk-menu__link">About</a>
+                </li>
+                <li class="rk-menu__item"><a href="documentation.html" class="rk-menu__link">Docs</a>
+                </li>
+                <li class="rk-menu__item"><a href="contact.html" class="rk-menu__link">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <div class="ae-grid__item item-lg-4 au-xs-ta-center">
+            <a href="#0" class="rk-social-btn ">
+                <svg>
+          <use xlink:href="assets/img/symbols.svg#icon-facebook"></use>
+        </svg></a>
+            <a href="#0" class="rk-social-btn ">
+                <svg>
+          <use xlink:href="assets/img/symbols.svg#icon-twitter"></use>
+        </svg></a>
+            <a href="#0" class="rk-social-btn ">
+                <svg>
+          <use xlink:href="assets/img/symbols.svg#icon-pinterest"></use>
+        </svg></a>
+            <a href="#0" class="rk-social-btn ">
+                <svg>
+          <use xlink:href="assets/img/symbols.svg#icon-tumblr"></use>
+        </svg></a>
+        </div>
+        <div class="ae-grid__item item-lg-4 au-xs-ta-center au-lg-ta-right">
+            <p class="rk-footer__text rk-footer__contact "> <span class="ae-u-bold">Email: </span><span class="ae-u-bolder"> <a href="#0" class="rk-dark-color ">contact@urkuportfolio.com </a></span></p>
+        </div>
+    </div>
+</footer>
