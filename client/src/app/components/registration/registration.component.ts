@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { global } from "../../services/global";
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
-import { and } from '@angular/router/src/utils/collection';
+import Swal from'sweetalert2';
 
 
 @Component({
@@ -37,7 +37,6 @@ export class RegistrationComponent implements OnInit {
       response => {
           this.userAux = response.data;
           console.log(this.userAux);
-          console.log("saved");
       },
       error => {
         console.log(error);
@@ -50,7 +49,14 @@ export class RegistrationComponent implements OnInit {
     if((this.userAux.amount == 0) && (this.user.amount <= 50)){
       this._userService.verifyLoan(this.user, this.user.email).subscribe(
         response=>{
-          console.log("amount updated");
+          Swal.fire({
+            toast: true,
+            position: 'top-end',
+            type: 'success',
+            title: 'Amount Updated',
+            showConfirmButton: false,
+            timer: 1500
+          });
           this.flag=true;
           sessionStorage.removeItem('userAux');         
         },
@@ -61,11 +67,18 @@ export class RegistrationComponent implements OnInit {
         }
       )
     }else{
-      if((this.userAux.amount.valueOf() + this.user.amount.valueOf())<=1000){
+      if((this.userAux.amount > 0) && (this.userAux.amount.valueOf() + this.user.amount.valueOf())<=1000){
         this.user.amount=(this.userAux.amount.valueOf() + this.user.amount.valueOf());
         this._userService.verifyLoan(this.user, this.user.email).subscribe(
           response=>{
-            console.log("amount updated");
+            Swal.fire({
+              toast: true,
+              position: 'top-end',
+              type: 'success',
+              title: 'Amount Updated',
+              showConfirmButton: false,
+              timer: 1500
+            });
             this.flag=true;
             sessionStorage.removeItem('userAux');         
           },
@@ -76,7 +89,14 @@ export class RegistrationComponent implements OnInit {
           }
         )
       }else{
-        console.log("We can not accept the loan");
+        Swal.fire({
+          toast: true,
+          position: 'top-end',
+          type: 'error',
+          title: 'We can not accept the loan',
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.flag=true;
             sessionStorage.removeItem('userAux'); 
       }
