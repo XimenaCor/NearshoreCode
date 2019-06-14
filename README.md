@@ -4,17 +4,22 @@ The project NearshoreCode pretends to solve the excercise given by the company. 
 As ordered in the exercise, you will have to use Node.js and Angular 5+, also to control the database you will need MongoDB
 ### Install Node.js
 To install in windows, download the Windows Installer .msi at https://nodejs.org/es/download/
+
 To install in macOs or Linux download the macOS Installer .pkg at https://nodejs.org/es/download/
+
 Once the installation has finished verify that you've had Node and npm installed by running
 * node --version
 * npm -v
 ### Install Angular
 To install Angular on any Operating System you will use the Angular CLI and follow the instructions given at https://cli.angular.io/
 ### Install MongoDB
-To install MongoDB on window, download this at https://www.mongodb.com/download-center/community?jmp=docs after inicialized the installation choose the Complete Mode. this will install also MongoDB Compass wich is a very usefull interface for Mongo.
-To install MongoDB on macOs, download this at https://www.mongodb.com/download-center/community?jmp=docs ando follow the instractions given at https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
+To install MongoDB on window, download this at https://www.mongodb.com/download-center/community?jmp=docs after inicialized the
+installation choose the Complete Mode. this will install also MongoDB Compass wich is a very usefull interface for Mongo.
+
+To install MongoDB on macOs, download this at https://www.mongodb.com/download-center/community?jmp=docs and follow the instractions given at https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 ## Clone the repository
 To clone the repo run the command:
+
 git clone https://github.com/XimenaCor/NearshoreCode.git
 ## Node Modules and Installation
 Once you have installed the main requirements and the repo itself, position your console on the download folder and run the commands:
