@@ -9,7 +9,7 @@ function save(req, res) {
     userSchema.findOne({ 'email': emailUser }).exec().then(data => {
         if (data) {
             console.log("user exists");
-            res.status(500).send(err);
+            res.status(200).send({ data });
         } else {
             user.amount = 0;
             user.email = params.email;

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { global } from "../../services/global";
 import { User } from "../../models/user";
 import { UserService } from "../../services/user.service";
+import { and } from '@angular/router/src/utils/collection';
 
 
 @Component({
@@ -13,6 +14,7 @@ import { UserService } from "../../services/user.service";
 })
 export class RegistrationComponent implements OnInit {
   public user: User;
+  public userAux: User;
   public url: string;
   public flag;
 
@@ -23,6 +25,7 @@ export class RegistrationComponent implements OnInit {
   ) {
     this.url = global.url;
     this.user = new User();
+    this.userAux = new User();
    }
 
   ngOnInit() {
@@ -32,8 +35,8 @@ export class RegistrationComponent implements OnInit {
   save(email){
     this._userService.save(email, this.user).subscribe(
       response => {
-          //this.user = response.data;
-          console.log(this.user);
+          this.userAux = response.data;
+          console.log(this.userAux);
           console.log("saved");
       },
       error => {
@@ -44,15 +47,71 @@ export class RegistrationComponent implements OnInit {
   }
 
   verifyLoan(){
-    this._userService.verifyLoan(this.user, this.user.email).subscribe(
-      response=>{
-        console.log("amount updated")
-      },
-      error=>{
-       console.log(error);
+    if((this.userAux.amount == 0) && (this.user.amount <= 50)){
+      this._userService.verifyLoan(this.user, this.user.email).subscribe(
+        response=>{
+          console.log("amount updated");
+          this.flag=true;
+          sessionStorage.removeItem('userAux');         
+        },
+        error=>{
+         console.log(error);
+         this.flag=true;
+         sessionStorage.removeItem('userAux');
+        }
+      )
+    }else{
+      if((this.userAux.amount.valueOf() + this.user.amount.valueOf())<=1000){
+        this.user.amount=(this.userAux.amount.valueOf() + this.user.amount.valueOf());
+        this._userService.verifyLoan(this.user, this.user.email).subscribe(
+          response=>{
+            console.log("amount updated");
+            this.flag=true;
+            sessionStorage.removeItem('userAux');         
+          },
+          error=>{
+           console.log(error);
+           this.flag=true;
+           sessionStorage.removeItem('userAux');
+          }
+        )
+      }else{
+        console.log("We can not accept the loan");
+        this.flag=true;
+            sessionStorage.removeItem('userAux'); 
       }
-    )
+    }    
   }
+
+  // verifyLoan(){
+  //   console.log(this.userAux.amount);
+  //   if(this.userAux.amount == 0){     
+  //     if(this.user.amount<=50){
+  //       this._userService.verifyLoan(this.user, this.user.email).subscribe(
+  //       response=>{
+  //         console.log("amount updated");
+  //         this.flag=true;
+  //         sessionStorage.removeItem('userAux');
+          
+  //       },
+  //       error=>{
+  //        console.log(error);
+  //        this.flag=true;
+  //        sessionStorage.removeItem('userAux');
+  //       }
+  //     )
+  //     }else{
+  //       console.log("We can not accept the loan");
+  //       this.flag=true;
+  //         sessionStorage.removeItem('userAux');
+  //     }      
+  //   }else{
+  //     console.log("We can not accept the loan");
+  //     this.flag=true;
+  //     sessionStorage.removeItem('userAux');
+  //   }
+    
+  // }
 
 
 

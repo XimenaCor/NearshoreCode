@@ -1,6 +1,6 @@
 export class User{
     public _id:String;
     public email:String;
-    public amount:String;
+    public amount:Number;
       constructor(){}
   }
