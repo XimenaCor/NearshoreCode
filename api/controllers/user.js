@@ -15,7 +15,7 @@ function save(req, res) {
             user.email = params.email;
 
             user.save().then(data => {
-                res.status(200).send({ user: data });
+                res.status(200).send({ data });
             }).catch(err => {
                 console.log(err);
                 res.status(500).send(err);
@@ -48,28 +48,9 @@ function verifyLoan(req, res) {
     });
 }
 
-function updateAmountFirstTime(req, res) {
-    var email = req.params.email;
-    var user = req.body;
-    userSchema.findById(email).exec().then(data => {
-        if (data.amount = 0) {
-            userSchema.findByIdAndUpdate(email, user).exec().then(data => {
-                res.status(200).send({ user: data });
-            }).catch(err => {
-                res.status(500).send(err);
-            });
-        } else {
-            res.status(500).send(err);
-        }
-    }).catch(err => {
-        res.status(500).send(err);
-    });
-
-}
 
 module.exports = {
     save,
     verifyEmail,
-    updateAmountFirstTime,
     verifyLoan
 }

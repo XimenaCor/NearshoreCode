@@ -32,9 +32,4 @@ export class UserService {
     return this._http.get(this.url+'verifyEmail/'+email).map(res=>res.json());
   }
 
-  updateAmountFirstTime(email,user){
-    let json = JSON.stringify(user);
-    let headers = new Headers({'Content-Type':'application/json'});
-    return this._http.put(this.url+'updateAmountFirstTime/'+user.email,json,{headers:headers}).map(res=>res.json());
-  }
 }
