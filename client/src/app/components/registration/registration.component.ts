@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   verifyLoan(){
-    this._userService.verifyLoan(this.user.email, this.user).subscribe(
+    this._userService.verifyLoan(this.user, this.user.email).subscribe(
       response=>{
         console.log("amount updated")
       },

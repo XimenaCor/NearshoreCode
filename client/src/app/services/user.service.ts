@@ -20,9 +20,12 @@ export class UserService {
   }
 
   verifyLoan(user, email){
+    //console.log(email);
+    console.log(user);
     let json = JSON.stringify(user);
     let headers = new Headers({'Content-Type':'application/json'});
-    return this._http.put(this.url+'verifyLoan/'+email,json,{headers:headers}).map(res=>res.json());
+    return this._http.put(this.url+'verifyLoan/'+user.email,json,{headers:headers}).map(res=>res.json());
+
   }
 
   verifyEmail(email){
@@ -32,6 +35,6 @@ export class UserService {
   updateAmountFirstTime(email,user){
     let json = JSON.stringify(user);
     let headers = new Headers({'Content-Type':'application/json'});
-    return this._http.put(this.url+'updateAmountFirstTime/'+email,json,{headers:headers}).map(res=>res.json());
+    return this._http.put(this.url+'updateAmountFirstTime/'+user.email,json,{headers:headers}).map(res=>res.json());
   }
 }

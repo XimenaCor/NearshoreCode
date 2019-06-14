@@ -40,10 +40,11 @@ function verifyEmail(req, res) {
 function verifyLoan(req, res) {
     var email = req.params.email;
     var user = req.body;
-    userSchema.findByIdAndUpdate(email, user).exec().then(data => {
+    userSchema.findOneAndUpdate({ email: email }, user).exec().then(data => {
         res.status(200).send({ user: data });
     }).catch(err => {
         res.status(500).send(err);
+        console.log(err)
     });
 }
 
